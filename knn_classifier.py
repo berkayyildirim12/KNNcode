@@ -58,12 +58,12 @@ class KnnClassifier:
 
         return math.sqrt(sum)
 
-    def get_manhattan_distance(self, point1, point2, n):
+    def get_manhattan_distance(self, point1, point2, ):
 
         sumx = 0
         sumy = 0
-        for i in range(len(n)):
-            for j in range(len(i+1, n)):
+        for i in range(len(point1)):
+            for j in range(len(i+1, point1)):
                 sumx += (abs(point1[i] - point1[j]))
                 sumy += (abs(point2[i] - point2[j]))
 
