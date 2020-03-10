@@ -8,7 +8,7 @@ class KnnClassifier:
     x_train = None
     y_train = None
 
-    def __init__(self, k=3):
+    def __init__(self, k=5):
 
         self.k = k
         print("k=", k)
@@ -31,7 +31,7 @@ class KnnClassifier:
             for j in range(len(self.x_train)):
                 vector2 = self.x_train[j]
 
-                distance = self.get_euclidean_distance(vector1, vector2)
+                distance = self.get_manhattan_distance(vector1, vector2)
                 distance_index_list.append((distance, j))
 
             ordered_distance_index_list = sorted(distance_index_list)
@@ -51,9 +51,20 @@ class KnnClassifier:
     def get_euclidean_distance(self, point1, point2):
 
         sum = 0
-        for i, in range(len(point1)):
+        for i in range(len(point1)):
             val = point1[i]
             difference = val - point2[i]
             sum += math.pow(difference, 2)
 
         return math.sqrt(sum)
+
+    def get_manhattan_distance(self, point1, point2, n):
+
+        sumx = 0
+        sumy = 0
+        for i in range(len(n)):
+            for j in range(len(i+1, n)):
+                sumx += (abs(point1[i] - point1[j]))
+                sumy += (abs(point2[i] - point2[j]))
+
+        return sumx + sumy
