@@ -31,7 +31,7 @@ class KnnClassifier:
             for j in range(len(self.x_train)):
                 vector2 = self.x_train[j]
 
-                distance = self.get_manhattan_distance(vector1, vector2)
+                distance = self.get_cosine_similarity(vector1, vector2)
                 distance_index_list.append((distance, j))
 
             ordered_distance_index_list = sorted(distance_index_list)
@@ -58,13 +58,29 @@ class KnnClassifier:
 
         return math.sqrt(sum)
 
-    def get_manhattan_distance(self, point1, point2, ):
+    def get_manhattan_distance(self, point1, point2):
 
         sumx = 0
         sumy = 0
         for i in range(len(point1)):
-            for j in range(len(i+1, point1)):
+            for j in range(len(point2)):
                 sumx += (abs(point1[i] - point1[j]))
                 sumy += (abs(point2[i] - point2[j]))
 
         return sumx + sumy
+
+    def get_cosine_similarity(self, point1, point2):
+
+        suma = 0
+        sumb = 0
+        sumc = 0
+
+        for i in range(len(point1)):
+            a = point1[i]
+            b = point2[i]
+
+            suma += a * a
+            sumb += b * b
+            sumc += a * b
+
+        return sumc / math.sqrt(suma * sumb)
